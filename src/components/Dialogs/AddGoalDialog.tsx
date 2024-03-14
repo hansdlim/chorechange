@@ -47,7 +47,6 @@ function AddGoalDialog({openDialog, setOpenDialog}){
         <DialogPopup title="Add Goal" confirm="Add Goal" confirmAction={addGoal} openDialog={openDialog} setOpenDialog={setOpenDialog}>
             <TextField label="Name of Goal" id="outlined-basic" name="goalName" value={formValue.goalName} onChange={handleOnChange}/>
             <TextField type="number" label="Reward" id="outlined-basic" name="reward" value={formValue.reward} onChange={handleOnChange}/>
-            {/* <FrequencyToggleButton frequency={frequency} setFrequency={setFrequency}/> */}
             <TextField type="number" label="Checkpoints" id="outlined-basic" name="checkpoints" value={formValue.checkpoints} onChange={handleOnChange}/>
         </DialogPopup>
     );

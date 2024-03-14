@@ -52,7 +52,6 @@ function AddTaskDialog({openDialog, setOpenDialog}){
     return (
         <DialogPopup title="Add Task" confirm="Add Task" confirmAction={addTask} openDialog={openDialog} setOpenDialog={setOpenDialog}>
             <TextField label="Name of Task" id="outlined-basic" name="taskName" value={formValue.taskName} onChange={handleOnChange}/>
-                {/* <TextField type="number" label="Reward" id="outlined-basic" name="reward" value={formValue.reward} onChange={handleOnChange}/> */}
                 <TextField type="number" label="Periods" id="outlined-basic" name="periods" value={formValue.periods} onChange={handleOnChange}/>
                 <FrequencyToggleButton frequency={frequency} setFrequency={setFrequency}/>
         </DialogPopup>

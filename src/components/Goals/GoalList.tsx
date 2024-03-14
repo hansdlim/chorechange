@@ -9,14 +9,9 @@ import { FrequencyType } from '../../enums/FrequencyType.tsx';
 type GoalListProps = {
     listName: string,
     goalList: Goal[],
-    // listType: FrequencyType,
-    // selectedTab: FrequencyType
-    // deleteTaskCommand?: JSX.Element
 }
 
 function GoalList(props:GoalListProps) {
-    // if(props.listType !== props.selectedTab)
-    //     return;
 
     return (
     <Box 
@@ -26,8 +21,6 @@ function GoalList(props:GoalListProps) {
             gap: 3,
             py:3
         }}>
-            {/* <Typography variant='h6' fontWeight={600}>{props.listName}</Typography>
-            <Divider></Divider> */}
         {props.goalList.map((t) => ( <GoalCard goal={t}/> ))}
     </Box>
     );

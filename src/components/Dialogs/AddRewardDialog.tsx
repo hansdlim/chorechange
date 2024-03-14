@@ -43,8 +43,6 @@ function AddRewardDialog({openDialog, setOpenDialog}){
             <TextField label="Name of Reward" id="outlined-basic" name="name" value={formValue.name} onChange={handleOnChange}/>
             <TextField label="Description" id="outlined-basic" name="description" value={formValue.description} onChange={handleOnChange}/>
             <TextField type="number" label="Price" id="outlined-basic" name="price" value={formValue.price} onChange={handleOnChange}/>
-            {/* <FrequencyToggleButton frequency={frequency} setFrequency={setFrequency}/> */}
-            {/* <TextField type="number" label="Checkpoints" id="outlined-basic" name="checkpoints" value={formValue.checkpoints} onChange={handleOnChange}/> */}
         </DialogPopup>
     );
 }

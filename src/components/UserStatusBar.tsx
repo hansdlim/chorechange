@@ -15,8 +15,6 @@ type UserStatusBarProps = {
 }
 
 function UserStatusBar(props:UserStatusBarProps) {
-    const [openRemoveDialog, setOpenRemoveDialog] = useState(false);
-    const [openAddDialog, setOpenAddDialog] = useState(false);
     const [openDialog, setOpenDialog] = useState(false);
 
     const [coinsCollected, setCoinsCollected] = useState(0);
@@ -76,16 +74,3 @@ function UserStatusBar(props:UserStatusBarProps) {
 }
 
 export default UserStatusBar;
-
-
-{/* <Button variant='outlined' onClick={() => setOpenAddDialog(true)}>
-                    <Typography>+</Typography>
-                </Button>
-                <Button variant='outlined' onClick={() => setOpenRemoveDialog(true)}>
-                    <Typography>-</Typography>
-                </Button> */}
-
-
-                
-        // <RemoveMoneyDialog openDialog={openRemoveDialog} setOpenDialog={setOpenRemoveDialog}/>
-        // <AddMoneyDialog openDialog={openAddDialog} setOpenDialog={setOpenAddDialog}/>

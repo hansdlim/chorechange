@@ -30,8 +30,6 @@ function TaskList(props:TaskListProps) {
             flexDirection: "column",
             gap: 2,
         }}>
-            {/* <Typography variant='h6' fontWeight={600}>{props.listName}</Typography>
-            <Divider></Divider> */}
         {uncompletedTasks.map((t) => ( <TaskCard task={t} key={t.id} incrementTaskCommand={props.incrementTaskCommand} deleteTaskCommand={props.deleteTaskCommand}/> ))}
         {completedTasks.map((t) => ( <TaskCard task={t} key={t.id} incrementTaskCommand={props.incrementTaskCommand} deleteTaskCommand={props.deleteTaskCommand}/> ))}
     </Box>

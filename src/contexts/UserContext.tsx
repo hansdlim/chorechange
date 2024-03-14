@@ -9,17 +9,6 @@ type UserContextType = {
     setUser: Dispatch<SetStateAction<User>>
 }
 
-
-// const task1:Task = new Task(10,"Make the Bed", FrequencyType.Daily, 1);
-// const task2:Task = new Task(20,"Go to the gym", FrequencyType.Weekly, 4);
-
-
-// const tasks: Task[] = [
-//     task1,
-//     task2
-// ]
-
-// const activeUser:User = new User("Hans", tasks,false, []);
 const activeUser:User = new User('','',{});
         
 export const UserContext = React.createContext<UserContextType>({user:activeUser, setUser: () => {}});

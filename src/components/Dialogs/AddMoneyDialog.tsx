@@ -14,7 +14,6 @@ function AddMoneyDialog(props:AddMoneyDialogProps){
     const [input, setInput] = useState(0);
 
     const addMoney = () => {
-        // user.currentSavings += Number(input);
         setUser({...user});
         setInput(0);
         props.setOpenDialog(false);

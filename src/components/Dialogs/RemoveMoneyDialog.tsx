@@ -14,7 +14,6 @@ const RemoveMoneyDialog = (props:RemoveMoneyDialogProps) => {
     const [input, setInput] = useState(0);
 
     const removeMoney = () => {
-        // user.currentSavings -= Number(input);
         setUser({...user});
         setInput(0);
         props.setOpenDialog(false);
