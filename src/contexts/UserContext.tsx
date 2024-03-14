@@ -2,7 +2,6 @@ import React, {useContext, useState, Dispatch, SetStateAction} from "react";
 import { User } from "../models/User.tsx";
 import { FrequencyType } from "../enums/FrequencyType.tsx";
 import { Task } from "../models/Task.tsx";
-import { getUserById } from "../api/usersApi.ts";
 
 type UserContextType = {
     user: User,

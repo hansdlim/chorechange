@@ -9,24 +9,6 @@ import { Task } from '../../models/Task';
 import { useTheme } from '@mui/material';
 import deleteIcon from '../../resources/close.svg';
 
-// const card = (task : TaskModel, completeCommand) => (
-//   <React.Fragment>
-//     <CardContent>
-//       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-//         Reward: {task.reward}
-//       </Typography>
-//       <Typography variant="h5" component="div">
-//         {task.taskName}
-//       </Typography>
-//       <Typography color="text.secondary">
-//         {task.frequency.toString()}
-//       </Typography>
-//       {displayPeriods(task)}
-//     </CardContent>
-//     {displayAction(task, completeCommand)}
-//   </React.Fragment>
-// );
-
 const displayPeriods = (task) => {
   if(task.periods === 1)
     return; 

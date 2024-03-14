@@ -26,7 +26,7 @@ const TaskTab = (props: TaskTabProps) => {
 
     return (
         <Button onClick={()=>props.selectTabCommand(props.tabType)} sx={{padding:0, paddingTop:1, color:tabColor}}>
-            <Box sx={{display:"flex", flexDirection:"column", minWidth:{xs:'20vw', sm:'18.5vw', md:120}}}>
+            <Box sx={{display:"flex", flexDirection:"column", minWidth:{xs:'20vw', sm:'16vw', md:120}}}>
                 <Box sx={{display:"flex", flexDirection:"row", justifyContent:"space-between",marginBottom:.5, marginLeft:1, marginRight:1}}>
                     <Typography fontWeight={fontWeight} sx={{fontSize:'1em', color:textColor}}>{props.tabType.toString()}</Typography>
                     <Typography fontWeight={fontWeight} sx={{fontSize:'1em', color:textColor}}>{numOfTasks}</Typography>

@@ -3,7 +3,9 @@ import { useContext, useState } from 'react';
 import { UserContext } from '../contexts/UserContext.tsx';
 import { TextField, Container, Box, Button, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { getUserById, getUser} from '../api/usersApi.ts';
+import { getUser} from '../api/usersApi.ts';
+import { useTheme } from '@mui/material';
+import logo from '../resources/logo.png';
 
 const initialUserDetails = {
     username: "",
@@ -12,6 +14,7 @@ const initialUserDetails = {
 
 function Login() {
     const navigate = useNavigate();
+    const theme = useTheme();
     const { user, setUser } = useContext(UserContext);
     const [userDetails, setUserDetails] = useState(initialUserDetails);
     
@@ -24,17 +27,12 @@ function Login() {
     }
 
     const login = async () => {
-        console.log("API CALL");
-        const userCall = await getUser('test');
-        console.log(userCall);
-        console.log("Logging in...");
+        const userCall = await getUser(userDetails.username, userDetails.password);
         setUser({
             ...userCall,
             token: true
         });
-        console.log(userCall);
         navigate("/");
-        console.log("Navigating...");
     }
 
     return (
@@ -42,10 +40,16 @@ function Login() {
         <Container maxWidth="md" disableGutters={true}>
             <Box sx={{
                 display:"flex",
-                flexDirection:"column"
+                flexDirection:"column",
+                padding:5,
+                gap:3
             }}>
-                <TextField label="UserName" id="outlined-basic" value={userDetails.username} onChange={handleOnChange}/>
-                <TextField label="Password" id="outlined-basic" value={userDetails.password} onChange={handleOnChange}/>
+                <Box sx={{display:'flex', flexDirection:'row', alignItems:'center'}}>
+                    <Box component="img" src={logo} sx={{width:30, height:30, marginRight:1}}/>
+                    <Typography variant='h4' fontWeight={'bold'} sx={{color:theme.palette.primary.main}}>chorechange</Typography>
+                </Box>
+                <TextField label="UserName" id="outlined-basic" value={userDetails.username} name='username' onChange={handleOnChange}/>
+                <TextField label="Password" type="password" id="outlined-basic" value={userDetails.password} name='password' onChange={handleOnChange}/>
                 <Button variant='outlined' onClick={() => login()}>
                     Log in
                 </Button>

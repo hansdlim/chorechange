@@ -75,7 +75,6 @@ function HomePage() {
             gap:2
         }}>
         <UserStatusBar user={user}/>
-        {/* <ProgressBar user={user} collectDailyReward={collectDailyReward}/> */}
         <TaskTabs selectedTab={selectedTab} taskList={userTaskArray} selectTabCommand={handleNewTabSelected}/>
         <TaskList listName={"Daily Tasks"}  taskList={dailyTasks} selectedTab={selectedTab} listType={FrequencyType.Daily} incrementTaskCommand={incrementTask} deleteTaskCommand={deleteTask}/>
         <TaskList listName={"Weekly Tasks"}  taskList={weeklyTasks} selectedTab={selectedTab} listType={FrequencyType.Weekly} incrementTaskCommand={incrementTask} deleteTaskCommand={deleteTask}/>

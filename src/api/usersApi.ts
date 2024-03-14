@@ -4,14 +4,21 @@ import { parseTasksFromObject } from "../utils/TaskUtils.ts";
 
 const API_BASE_URL = 'https://6ldoyn4yl1.execute-api.ap-southeast-2.amazonaws.com/beta/users';
 
-export const getUserById = async (userId)=> {
+export const tryLoginUser = async (userName:string, password:string)=> {
     try {
-        const response = await fetch(`${API_BASE_URL}`);
+        const queryStringParameters = {
+            "userName": userName,
+            "password": password
+        };
+
+        const queryString = new URLSearchParams(queryStringParameters).toString(); 
+        const response = await fetch(`${API_BASE_URL}/?${queryString}`);
+        const data = await response.json();
+        console.log(data);
         if (!response.ok) {
-            throw new Error('Failed to fetch user data');
+            throw new Error('Failed to get user');
         }
-        const userData = await response.json();
-        return userData;
+        return data;
     } 
     catch (error) {
         console.error('Error fetching user data:', error);
@@ -19,8 +26,8 @@ export const getUserById = async (userId)=> {
     } 
 };
 
-export const getUser = async(userId:string) =>{
-    const userData = await getUserById(1);
+export const getUser = async(userName:string, password:string) =>{
+    const userData = await tryLoginUser(userName, password);
     const userTasks = parseTasksFromObject(userData.Item.tasks);
     const user : User = new User(userData.Item.ID, userData.Item.userName, userTasks);
     console.log(user.id);

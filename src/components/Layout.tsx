@@ -16,7 +16,7 @@ function Layout({children}) {
         <Box 
           sx={{
               display: "flex",
-              width:"100%",
+              width:"100vw",
               padding:2
           }}>
           {children}
