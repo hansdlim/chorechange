@@ -8,36 +8,19 @@ import AddTaskDialog from './Dialogs/AddTaskDialog.tsx';
 import logo from '../resources/logo.png';
 import { useTheme } from '@mui/material';
 import { ButtonBase } from '@mui/material';
-import listIcon from '../resources/list-icon.svg';
-import storeIcon from '../resources/store-icon.svg';
+import listIcon from '../resources/tasks-icon.svg';
+import storeIcon from '../resources/store-icon-blue.svg';
+import { NavDetails } from '../models/NavDetails.ts';
 
-function SideBar() {
+type SideBarProps = {
+    navDetails:{ [key: string]: NavDetails }
+}
+
+function SideBar(props:SideBarProps) {
+    const navDetailsArray: NavDetails[] = Object.values(props.navDetails);
     const [openDialog, setOpenDialog] = React.useState(false);
     const theme = useTheme();
-    const navigationLinks = [
-        {
-            name: "Tasks",
-            link: "/",
-            icon: listIcon
-        },
-        // {
-        //     name: "GOALS",
-        //     link: "/goals",
-        // },
-        {
-            name: "STORE",
-            link: "/store",
-            icon: storeIcon
-        },
-        // {
-        //     name: "Focus",
-        //     link: "/focus",
-        // },
-        // {
-        //     name: "Profile",
-        //     link: "/profile",
-        // },
-    ]
+
         
     const getButtonBackgroundColor = (isActive : boolean) => {
         if(isActive)
@@ -92,7 +75,7 @@ function SideBar() {
                             </Typography>
                         </Box>
                         {
-                            navigationLinks.map((item) => (
+                            navDetailsArray.map((item) => (
                                 <NavLink key={item.name} to={item.link} end style={{textDecoration:'none', width:'100%'}}> 
                                 {
                                     ({ isActive }) => ( 

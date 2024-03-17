@@ -21,6 +21,7 @@ const styles = {
   orangeMain: '#FF8D20',
   orangeSecondary: '#d96c04',
   blueMain: '#5d96a3',
+  blueLight: '#8FBBC5',
   neutralMain: '#e5e5e5',
   neutralDark:'#9D9D9D',
   neutralLight:'#F3F3F3',
@@ -31,6 +32,7 @@ const theme = createTheme({
   palette: {
     primary: {
         main: styles.blueMain,
+        light: styles.blueLight
     },
     secondary: {
         main:styles.orangeMain,

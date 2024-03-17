@@ -8,26 +8,9 @@ import Typography from '@mui/material/Typography';
 import { Task } from '../../models/Task';
 import { useTheme } from '@mui/material';
 import deleteIcon from '../../resources/close.svg';
+import {ButtonBase} from '@mui/material';
+import IncrementButton from './cardComponents/IncrementButton.tsx';
 
-const displayPeriods = (task) => {
-  if(task.periods === 1)
-    return; 
-  return (
-    <Typography color="text.secondary">
-      {task.completedPeriods}/{task.periods} completed
-    </Typography>
-  )
-}
-
-const displayAction = (task, incrementTask) => {
-  if(task.isCompleted())
-    return;
-
-  const buttonWording = (task.completedPeriods + 1) === task.periods ? "Complete" : "+";
-  return (
-    <Button size="small" onClick={() => incrementTask(task)}>{buttonWording}</Button>
-  )
-}
  
 type TaskCardProps = {
   task : Task,
@@ -38,7 +21,19 @@ type TaskCardProps = {
 function TaskCard(props:TaskCardProps){  
   const theme = useTheme();
   const backgroundColor = props.task.isCompleted() ? theme.palette.neutral.light : "#ffffff";
+  const hoverColor = props.task.isCompleted() ? theme.palette.neutral.dark : theme.palette.neutral.light;
   const borderThickness = props.task.isCompleted() ? 0 : 1;
+  const fontColor = props.task.isCompleted() ? theme.palette.neutral.dark : '';
+
+  const displayPeriods = (task) => {
+    if(task.periods === 1)
+      return; 
+    return (
+      <Typography color={fontColor}>
+        {task.completedPeriods}/{task.periods} completed
+      </Typography>
+    )
+  }
 
   return (
     <Box sx={{
@@ -54,18 +49,25 @@ function TaskCard(props:TaskCardProps){
       boxShadow:'none',
       padding:2
     }}>
-      <Box sx={{display:'flex', gap:2}}>
-        {displayAction(props.task, props.incrementTaskCommand)}
+      <Box sx={{display:'flex', gap:2, alignItems:'center'}}>
+        {!props.task.isCompleted() ?  (
+          <IncrementButton incrementTaskCommand={props.incrementTaskCommand} task={props.task}/>
+        ): <></>}
         <Box>
-          <Typography variant="h5">
+          <Typography variant="h5" color={fontColor}>
             {props.task.taskName}
           </Typography>
           {displayPeriods(props.task)}
         </Box>
       </Box>
-      <Box component={Button} onClick={() => props.deleteTaskCommand(props.task)}>
+      <ButtonBase onClick={() => props.deleteTaskCommand(props.task)} 
+        sx={{
+          padding:1,
+          borderRadius:23,
+          "&:hover":{"backgroundColor":hoverColor}
+          }}>
         <Box component="img" src={deleteIcon} sx={{width:23, height:23}}/>
-      </Box>
+      </ButtonBase>
     </Box>
   );
 }

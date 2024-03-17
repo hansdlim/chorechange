@@ -57,9 +57,9 @@ function UserStatusBar(props:UserStatusBarProps) {
                         justifyContent:'flex-start',
                         alignItems:"center",
                         width:'100%',
-                        gap:2,
+                        gap:1,
                     }}>
-                        Daily Progress: <Box fontWeight={'bold'}>{props.user.getDailyProgressPercentage()}</Box>
+                        Daily Progress: <Box fontWeight={'bold'} fontSize={22}>{props.user.getDailyProgressPercentage()}</Box>
                     <Button variant='contained' disableElevation disabled={disableButton} onClick={() => collectDailyReward()}> 
                         <Box sx={{color:'white', fontWeight:600}}>{buttonText}</Box>
                     </Button>

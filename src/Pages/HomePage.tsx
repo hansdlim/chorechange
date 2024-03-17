@@ -69,9 +69,9 @@ function HomePage() {
       <Box 
         sx={{
             display: "flex",
+            width:'100%',
             flexDirection: "column",
             justifyContent:"flex-start",
-            width:"100%",
             gap:2
         }}>
         <UserStatusBar user={user}/>
