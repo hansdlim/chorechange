@@ -15,15 +15,6 @@ export class User {
     monthlyCoins: number;
     dailyRewardCollectedDate?: Date;
 
-    // constructor(name : string, tasks:Task[], token:boolean, goals:Goal[]){
-    //     this.name = name;
-    //     this.tasks = tasks;
-    //     this.token = token;
-    //     this.goals = goals;
-    //     this.dailyCoins = 0;
-    //     this.rewards = [];
-    // }
-
     constructor(id:string, name : string, tasks: {[key:string]:Task}, rewards: {[key:string]:Reward}, dailyCoins:number, dailyRewardCollectedDate?:Date){
         this.name = name;
         this.tasks = tasks;
