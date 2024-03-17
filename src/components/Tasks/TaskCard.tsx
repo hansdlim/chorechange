@@ -50,9 +50,7 @@ function TaskCard(props:TaskCardProps){
       padding:2
     }}>
       <Box sx={{display:'flex', gap:2, alignItems:'center'}}>
-        {!props.task.isCompleted() ?  (
-          <IncrementButton incrementTaskCommand={props.incrementTaskCommand} task={props.task}/>
-        ): <></>}
+        {props.task.isCompleted() ?  ( <></> ): <IncrementButton incrementTaskCommand={props.incrementTaskCommand} task={props.task}/>}
         <Box>
           <Typography variant="h5" color={fontColor}>
             {props.task.taskName}

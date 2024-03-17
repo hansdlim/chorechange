@@ -23,11 +23,15 @@ export class Task {
         if(this.lastCompletedDate === undefined || this.lastCompletedDate === null){
             return false;
         }
-        return this.lastCompletedDate.getUTCDate() <= new Date().getUTCDate() ? true : false
+        const isCompleted = (this.lastCompletedDate.getUTCDate() + 1) > new Date().getUTCDate() ? true : false;
+        // console.log('lastcompleteddate:' +this.lastCompletedDate+1);
+        // console.log('currentdate:' +new Date());
+        // console.log(isCompleted);
+        return isCompleted;
     }
 
     readonly completeTask = function(){
-        this.completePeriods = 0;
-        this.lastCompletedDate = undefined;
+        // this.completePeriods = 0;
+        this.lastCompletedDate = new Date();
     }
 }

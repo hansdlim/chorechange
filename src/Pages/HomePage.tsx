@@ -29,13 +29,9 @@ function HomePage() {
     let updatedUser:User = {...user};
     const t = updatedUser.tasks[task.id];
     t.completedPeriods += 1;
-    console.log(t.completedPeriods + " / " + t.periods);
-    if(t.completedPeriods === t.periods){
+    if(t.periods <= t.completedPeriods){
       t.completeTask();
     }
-    console.log("THIS IS A NEW DATE: " + new Date());
-    console.log(t.lastCompletedDate);
-    console.log(t.isCompleted());
     setUser(updatedUser);
     const saveTask = await saveUserTask(user.id, task);
   }
@@ -43,10 +39,6 @@ function HomePage() {
   const deleteTask = async (task: Task) => {
     let updatedUser:User = {...user};
     const t:Task = updatedUser.tasks[task.id];
-    console.log(t);
-    console.log(user.tasks);
-    console.log("deletingTask");
-    console.log(task.id);
     delete updatedUser.tasks[task.id];
     setUser(updatedUser);
     await deleteUserTask(updatedUser.id, task);

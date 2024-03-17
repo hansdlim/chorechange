@@ -13,7 +13,7 @@ export class User {
     dailyCoins: number;
     weeklyCoins: number;
     monthlyCoins: number;
-    dailyRewardCollectedDate: Date;
+    dailyRewardCollectedDate?: Date;
 
     // constructor(name : string, tasks:Task[], token:boolean, goals:Goal[]){
     //     this.name = name;
@@ -24,7 +24,7 @@ export class User {
     //     this.rewards = [];
     // }
 
-    constructor(id:string, name : string, tasks: {[key:string]:Task}, rewards: {[key:string]:Reward}, dailyCoins:number, dailyRewardCollectedDate:Date){
+    constructor(id:string, name : string, tasks: {[key:string]:Task}, rewards: {[key:string]:Reward}, dailyCoins:number, dailyRewardCollectedDate?:Date){
         this.name = name;
         this.tasks = tasks;
         this.goals = [];
@@ -32,7 +32,6 @@ export class User {
         this.id = id;
         this.rewards = rewards;
         this.dailyRewardCollectedDate = dailyRewardCollectedDate;
-        console.log(this.dailyRewardCollectedDate);
     }
 
     readonly getDailyTasks = () : Task[] => {
