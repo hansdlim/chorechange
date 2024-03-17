@@ -9,6 +9,7 @@ import { Reward } from '../../models/Reward.ts';
 type RewardsListProps = {
     listName: string,
     rewards: Reward[],
+    purchaseReward: (reward:Reward) => void,
 }
 
 function RewardsList(props:RewardsListProps) {
@@ -19,7 +20,7 @@ function RewardsList(props:RewardsListProps) {
             flexDirection: "column",
             gap: 2
         }}>
-        {props.rewards.map((r) => ( <RewardCard reward={r}/> ))}
+        {props.rewards.map((r) => ( <RewardCard reward={r} key={r.id} purchaseReward={props.purchaseReward}/> ))}
     </Box>
     );
 }

@@ -28,6 +28,6 @@ export class Task {
 
     readonly completeTask = function(){
         this.completePeriods = 0;
-        this.lastCompletedDate = new Date();
+        this.lastCompletedDate = undefined;
     }
 }

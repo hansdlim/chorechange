@@ -8,15 +8,26 @@ import { useState } from "react";
 import StoreEmptyView from "../components/Store/StoreEmptyView.tsx";
 import { isNotEmpty } from "../utils/ArrayUtils.ts";
 import AddRewardDialog from "../components/Dialogs/AddRewardDialog.tsx";
+import RewardBoughtDialog from "../components/Dialogs/RewardBoughtDialog.tsx";
 import RewardsList from "../components/Store/RewardsList.tsx";
 import { Divider } from "@mui/material";
 import { Button } from "@mui/material";
+import { Reward } from "../models/Reward.ts";
+import { saveUser } from "../api/usersApi.ts";
 
 const Store = () => {
     const { user, setUser } = useContext(UserContext);
-    const [ openDialog, setOpenDialog ] = useState(false);
+    const [ openAddedDialog, setopenAddedDialog ] = useState(false);
+    const [ openBoughtDialog, setopenBoughtDialog ] = useState(false);
 
     const hasRewards = isNotEmpty(user.rewards);
+    const userRewards: Reward[] = Object.values(user.rewards);
+    const purchaseReward = (reward:Reward) =>{
+        user.dailyCoins -= reward.price;
+        setUser(user);
+        setopenBoughtDialog(true);
+        saveUser(user);
+    }
 
     return (
         <Layout>
@@ -31,12 +42,13 @@ const Store = () => {
                 <UserStatusBar user={user}/>
                 <Box sx={{display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center', gap:3}}>
                     <Typography variant="h6" fontWeight="bold">Rewards</Typography>
-                    <Button variant="contained" disableElevation onClick={() => setOpenDialog(true)}>Create New +</Button>
+                    <Button variant="contained" disableElevation onClick={() => setopenAddedDialog(true)}>Create New +</Button>
                 </Box>
                 <Divider></Divider>
-                {hasRewards ? <RewardsList listName="Rewards" rewards={user.rewards}/> : <StoreEmptyView setOpenDialog={setOpenDialog}/>}
+                {hasRewards ? <RewardsList listName="Rewards" rewards={userRewards} purchaseReward={purchaseReward}/> : <StoreEmptyView setOpenDialog={setopenAddedDialog}/>}
             </Box>
-        <AddRewardDialog openDialog={openDialog} setOpenDialog={setOpenDialog}/>
+        <AddRewardDialog openDialog={openAddedDialog} setOpenDialog={setopenAddedDialog}/>
+        <RewardBoughtDialog openDialog={openBoughtDialog} setOpenDialog={setopenBoughtDialog}/>
         </Layout>
     )
 }

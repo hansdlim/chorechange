@@ -7,13 +7,13 @@ export class User {
     id:string = '';
     name:string;
     tasks: {[key:string]:Task};
-    token:boolean;
+    token:string;
     goals: Goal[];
-    rewards: Reward[];
+    rewards: {[key:string]:Reward};;
     dailyCoins: number;
     weeklyCoins: number;
     monthlyCoins: number;
-    private dailyRewardCollectedDate?: Date = undefined;
+    dailyRewardCollectedDate: Date;
 
     // constructor(name : string, tasks:Task[], token:boolean, goals:Goal[]){
     //     this.name = name;
@@ -24,14 +24,15 @@ export class User {
     //     this.rewards = [];
     // }
 
-    constructor(id:string, name : string, tasks: {[key:string]:Task}){
+    constructor(id:string, name : string, tasks: {[key:string]:Task}, rewards: {[key:string]:Reward}, dailyCoins:number, dailyRewardCollectedDate:Date){
         this.name = name;
         this.tasks = tasks;
-        this.token = false;
         this.goals = [];
-        this.dailyCoins = 0;
+        this.dailyCoins = dailyCoins;
         this.id = id;
-        this.rewards = [];
+        this.rewards = rewards;
+        this.dailyRewardCollectedDate = dailyRewardCollectedDate;
+        console.log(this.dailyRewardCollectedDate);
     }
 
     readonly getDailyTasks = () : Task[] => {
@@ -67,7 +68,8 @@ export class User {
         if(this.dailyRewardCollectedDate === undefined || this.dailyRewardCollectedDate === null){
             return false;
         }
-        return this.dailyRewardCollectedDate.getUTCDate() + 1 < new Date().getUTCDate() ? false : true;
+        // return this.dailyRewardCollectedDate.getUTCDate() + 1 < new Date().getUTCDate() ? false : true;
+        return this.dailyRewardCollectedDate + 1 < new Date() ? false : true;
     }
 
     readonly dailyRewardAvailable = function(){

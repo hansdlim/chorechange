@@ -1,6 +1,7 @@
 import { Task } from "../models/Task.tsx";
 import { User } from "../models/User.tsx";
 import { parseTasksFromObject } from "../utils/TaskUtils.ts";
+import { parseRewardsFromObject } from "../utils/RewardUtils.ts";
 
 const API_BASE_URL = 'https://6ldoyn4yl1.execute-api.ap-southeast-2.amazonaws.com/beta/users';
 
@@ -29,9 +30,37 @@ export const tryLoginUser = async (userName:string, password:string)=> {
 export const getUser = async(userName:string, password:string) =>{
     const userData = await tryLoginUser(userName, password);
     const userTasks = parseTasksFromObject(userData.Item.tasks);
-    const user : User = new User(userData.Item.ID, userData.Item.userName, userTasks);
+    const userRewards = parseRewardsFromObject(userData.Item.rewards);
+    console.log(userData.Item.dailyRewardCollectedDate);
+    const user : User = new User(userData.Item.ID, userData.Item.userName, userTasks, userRewards, userData.Item.dailyCoins, userData.Item.dailyRewardCollectedDate);
     console.log(user.id);
     return user;
+}
+
+export const saveUser = async(user:User) => {
+    try {
+        const requestBody = {
+            body:{
+                "user": user,
+            }
+        };
+        console.log(JSON.stringify(requestBody));
+        const response = await fetch(`${API_BASE_URL}/`, {
+            body: JSON.stringify(requestBody),
+            method:'POST',
+            headers: {'Content-Type': 'application/json'},
+        });
+        const data = await response.json();
+        console.log(data);
+       
+        if (!response.ok) {
+            throw new Error('Failed to save user');
+        }
+    } 
+    catch (error) {
+        console.error('Error saving user data:', error);
+        throw error;
+    } 
 }
 
 export const saveUserTask = async(userId:string, task:Task) => {

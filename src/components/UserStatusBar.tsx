@@ -9,6 +9,7 @@ import { useTheme } from '@emotion/react';
 import CoinsAddedDialog from './Dialogs/CoinsAddedDialog.tsx';
 import { useContext } from 'react';
 import { UserContext } from '../contexts/UserContext.tsx';
+import { saveUser } from '../api/usersApi.ts';
 
 type UserStatusBarProps = {
     user:User,
@@ -32,6 +33,8 @@ function UserStatusBar(props:UserStatusBarProps) {
         setCoinsCollected(1);
         setOpenDialog(true);
         setUser({...user});
+        console.log('saving User...');
+        saveUser(user);
     }
 
     return (

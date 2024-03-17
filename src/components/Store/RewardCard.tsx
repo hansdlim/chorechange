@@ -8,6 +8,7 @@ import coin from '../../resources/coin.svg';
 
 type RewardCardProps = {
     reward : Reward,
+    purchaseReward: (reward:Reward) => void,
 }
 
 function RewardCard(props:RewardCardProps){  
@@ -34,7 +35,7 @@ function RewardCard(props:RewardCardProps){
         <Box sx={{typography:'subtitle'}}>
             {props.reward.description}
         </Box>
-        <Button variant='outlined'>
+        <Button variant='outlined' onClick={() => props.purchaseReward(props.reward)}>
             Buy
         </Button>
     </Box>
